@@ -23,8 +23,8 @@ class Main():
         # region FORM
         app.ctkf_form_content.grid_columnconfigure(0, weight=1)
         app.ctkf_form_content.grid_columnconfigure(1, weight=1)
-        app.ctkf_form_content.grid_rowconfigure(
-            0, minsize=10)     # empty row with minsize as spacing
+        app.ctkf_form_content.grid_rowconfigure(0, minsize=10)
+        app.ctkf_form_content.grid_rowconfigure(10, weight=1)
 
         app.ctkl_identity = customtkinter.CTkLabel(master=app.ctkf_form_content,
                                                 text="Identificacao",

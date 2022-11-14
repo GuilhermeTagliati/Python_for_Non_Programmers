@@ -58,12 +58,12 @@ class App(customtkinter.CTk):
         self.ctkb_create_menu = customtkinter.CTkButton(master=self.ctkf_sidebar,
                                                         text="Registro",
                                                         command=self.load_main_page, fg_color="grey30")
-        self.ctkb_create_menu.grid(row=2, column=0, sticky="we")
+        self.ctkb_create_menu.grid(row=2, column=0, sticky="we", pady=10)
 
         self.ctkb_dashboard_menu = customtkinter.CTkButton(master=self.ctkf_sidebar,
                                                            text="Dashboard",
                                                            command=self.load_dashboard_page, fg_color="grey30")
-        self.ctkb_dashboard_menu.grid(row=3, column=0, sticky="we")
+        self.ctkb_dashboard_menu.grid(row=4, column=0, sticky="we", pady=10)
         # endregion
 
     def load_main_page(self):
@@ -108,8 +108,12 @@ class App(customtkinter.CTk):
             df_current = pandas.read_csv("./data/data.csv")
             df_result = pandas.concat(
                 [df_current, pandas.DataFrame([result_dict])], axis=0)
-        print(df_result)
+        
         df_result.to_csv(r'data/data.csv', index=False)
+        App.ctkl_status = customtkinter.CTkLabel(master=app.ctkf_form_content,
+                                                    text="Salvo",
+                                                    text_font=("Roboto Medium", -16))
+        App.ctkl_status.grid(row=10, column=0,  sticky="e", pady=10, padx=0)
 
 
 if __name__ == "__main__":
