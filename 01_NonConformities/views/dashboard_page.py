@@ -16,3 +16,4 @@ def load_dashboard_page(app, ctk_frame):
     app.ctkf_form_content.grid(row=1, column=0, sticky="nswe",
                                padx=app.CONTEXT, pady=app.CONTEXT)
     return ctk_frame
+
