@@ -3,6 +3,7 @@ import tkinter.messagebox
 import customtkinter
 from PIL import Image, ImageTk
 import os
+from views import main_page, dashboard_page
 
 # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_appearance_mode("System")
@@ -54,83 +55,30 @@ class App(customtkinter.CTk):
         self.ctkb_logo.grid(row=1, column=0, pady=App.CONTEXT, padx=App.CONTEXT)
         self.ctkb_create_menu = customtkinter.CTkButton(master=self.ctkf_sidebar,
                                                 text="Registro",
-                                                command=self.button_event, fg_color="grey30")
+                                                command=self.load_main_page, fg_color="grey30")
         self.ctkb_create_menu.grid(row=2, column=0, sticky="we")
+        
+        self.ctkb_dashboard_menu = customtkinter.CTkButton(master=self.ctkf_sidebar,
+                                                text="Dashboard",
+                                                command=self.load_dashboard_page, fg_color="grey30")
+        self.ctkb_dashboard_menu.grid(row=3, column=0, sticky="we")
         # endregion
 
-        # region MAIN BODY CONFIGURATION
-        self.ctkf_main.grid_rowconfigure(0, minsize=10)
-        self.ctkf_main.grid_rowconfigure(1, weight=1)
-        self.ctkf_main.grid_columnconfigure(0, weight=1)
+                       
 
-        self.ctkl_page_title = customtkinter.CTkLabel(master=self.ctkf_main,
-                                              text="Sistema de Abertura de Nao Conformidades V2",
-                                              text_font=("Bebas Neue", 2*App.CONTEXT)) 
-        self.ctkl_page_title.grid(row=0, column=0, pady=App.CONTEXT, padx=App.CONTEXT)
+
+    def load_main_page(self):
+        self.ctkf_main = customtkinter.CTkFrame(master=self)
+        self.ctkf_main.grid(row=0, column=1, sticky="nswe",
+                            padx=App.CONTEXT, pady=App.CONTEXT)        
+        self.ctkf_main = main_page.load_main_page_view(app=App, ctk_frame=self.ctkf_main)
         
-        self.ctkf_form_content = customtkinter.CTkFrame(master=self.ctkf_main)
-        self.ctkf_form_content.grid(row=1, column=0, sticky="nswe",
-                            padx=App.CONTEXT, pady=App.CONTEXT)
+    def load_dashboard_page(self):
+        self.ctkf_main = customtkinter.CTkFrame(master=self)
+        self.ctkf_main.grid(row=0, column=1, sticky="nswe",
+                            padx=App.CONTEXT, pady=App.CONTEXT)   
+        self.ctkf_main = dashboard_page.load_dashboard_page(app=App, ctk_frame=self.ctkf_main)
         
-        #endregion
-
-        #region FORM
-        self.ctkf_form_content.grid_columnconfigure(0, weight=1)
-        self.ctkf_form_content.grid_columnconfigure(1, weight=1)
-        self.ctkf_form_content.grid_rowconfigure(0, minsize=10)     # empty row with minsize as spacing
-
-
-        self.ctkl_identity = customtkinter.CTkLabel(master=self.ctkf_form_content,
-                                              text="Identificacao",
-                                              text_font=("Roboto Medium", -16)) 
-        self.ctkl_identity.grid(row=1, column=0,  sticky="w", pady=10, padx=0)
-
-        self.ctks_identity = customtkinter.CTkOptionMenu(master=self.ctkf_form_content,
-                                                         values=["Light", "Dark", "System"])
-        self.ctks_identity.grid(row=2, column=0,  sticky="we", pady=10, padx=20)
-        
-        self.ctkl_description = customtkinter.CTkLabel(master=self.ctkf_form_content,
-                                              text="Descricao",
-                                              text_font=("Roboto Medium", -16)) 
-        self.ctkl_description.grid(row=3, column=0,  sticky="w", pady=10, padx=0)
-        self.ctke_description = customtkinter.CTkTextbox(master=self.ctkf_form_content,
-                                            height=App.CONTEXT*5, fg_color="grey25")
-        self.ctke_description.insert("0.0","Escreva aqui a descricao da nao conformidade")
-        self.ctke_description.grid(row=4, column=0,  sticky="we", pady=10, padx=20)
-
-        self.ctkl_rootcause = customtkinter.CTkLabel(master=self.ctkf_form_content,
-                                              text="Analise de Causa Raiz",
-                                              text_font=("Roboto Medium", -16)) 
-        self.ctkl_rootcause.grid(row=3, column=1,  sticky="w", pady=10, padx=20)
-        self.ctke_rootcause = customtkinter.CTkTextbox(master=self.ctkf_form_content,
-                                            height=App.CONTEXT*5, fg_color="grey25")
-        self.ctke_rootcause.insert("0.0","Escreva aqui a sua analise de causa raiz")
-        self.ctke_rootcause.grid(row=4, column=1,  sticky="we", pady=10, padx=20)
-
-        self.ctkl_solution = customtkinter.CTkLabel(master=self.ctkf_form_content,
-                                              text="Acoes corretivas",
-                                              text_font=("Roboto Medium", -16)) 
-        self.ctkl_solution.grid(row=5, column=0,  sticky="w", pady=10, padx=20)
-
-        self.ctke_solution = customtkinter.CTkTextbox(master=self.ctkf_form_content,
-                                            height=App.CONTEXT*5, fg_color="grey25")
-        self.ctke_solution.insert("0.0","Escreva aqui as acoes tomadas para solucionar o problema")
-        self.ctke_solution.grid(row=6, column=0,  sticky="we", pady=10, padx=20)
-
-        self.ctkcheck_critical = customtkinter.CTkCheckBox(master=self.ctkf_form_content,
-                                                     text="Critico")
-        self.ctkcheck_critical.grid(row=6, column=1,  sticky="we", pady=10, padx=20)
-
-
-        self.ctkb_create = customtkinter.CTkButton(master=self.ctkf_form_content,
-                                                text="Criar",
-                                                command=self.button_event)
-        self.ctkb_create.grid(row=7, column=0, pady=10, padx=20, sticky="nsew")                           
-        #endregion
-
-
-    def button_event(self):
-        print("Button pressed")
 
     def on_closing(self, event=0):
         self.destroy()
