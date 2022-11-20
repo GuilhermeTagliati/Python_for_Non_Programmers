@@ -4,6 +4,7 @@ import pandas
 
 from PIL import Image, ImageTk
 from views import main_page, dashboard_page
+from tkinter import messagebox
 
 # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_appearance_mode("System")
@@ -102,18 +103,16 @@ class App(customtkinter.CTk):
             'critical': str(critical).replace('\n', '')
         }
         df_result = pandas.DataFrame()
-        if (os.stat("./data/data.csv").st_size == 0):
+        if (os.stat("role model project/data/data.csv").st_size == 0):
             df_result = pandas.DataFrame([result_dict])
         else:
-            df_current = pandas.read_csv("./data/data.csv")
+            df_current = pandas.read_csv("role model project/data/data.csv")
             df_result = pandas.concat(
                 [df_current, pandas.DataFrame([result_dict])], axis=0)
         
-        df_result.to_csv(r'data/data.csv', index=False)
-        App.ctkl_status = customtkinter.CTkLabel(master=app.ctkf_form_content,
-                                                    text="Salvo",
-                                                    text_font=("Roboto Medium", -16))
-        App.ctkl_status.grid(row=10, column=0,  sticky="e", pady=10, padx=0)
+        df_result.to_csv(r'role model project/data/data.csv', index=False)
+        messagebox.showinfo('Sucesso!!','Nao conformidade salva com sucesso')
+
 
 
 if __name__ == "__main__":
