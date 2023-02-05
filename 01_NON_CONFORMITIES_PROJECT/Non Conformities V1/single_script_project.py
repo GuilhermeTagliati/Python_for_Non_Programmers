@@ -10,7 +10,6 @@ window = tk.Tk()
 window.geometry('1080x720')
 window.title("Sistema de abertura de Nao Conformidades")
 
-check_state = False
 savePath = os.path.join(os.path.dirname(__file__), '../data/data.csv')
 
 def save_information():
@@ -18,7 +17,7 @@ def save_information():
     description = txt_description.get("0.0", "end")
     rootcause = txt_rootcause.get("0.0", "end")
     solution = txt_solution.get("0.0", "end")
-    critical = check_state
+    critical = check_state.get()
     result_dict = {
         'id': uuid.uuid4(),
         'type': str(identification).replace('\n', ''),
@@ -69,6 +68,8 @@ tklabel_solution = tk.Label(
 tklabel_solution.grid(row=7, column=0, padx=0, pady=10)
 txt_solution = scrolledtext.ScrolledText(window, width=100, height=5)
 txt_solution.grid(row=8, column=0)
+
+check_state = tk.IntVar()
 
 ttkchk = ttk.Checkbutton(window, text='Critico', var=check_state)
 ttkchk.grid(row=9, column=0, padx=0, pady=10)

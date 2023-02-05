@@ -18,9 +18,7 @@ class Main():
         app.ctkf_form_content.grid(row=1, column=0, sticky="nswe",
                                 padx=app.CONTEXT, pady=app.CONTEXT)
 
-        # endregion
 
-        # region FORM
         app.ctkf_form_content.grid_columnconfigure(0, weight=1)
         app.ctkf_form_content.grid_columnconfigure(1, weight=1)
         app.ctkf_form_content.grid_rowconfigure(0, minsize=10)

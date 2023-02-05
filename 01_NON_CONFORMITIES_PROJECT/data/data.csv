@@ -1,3 +1,5 @@
-id,type,description,rootcause,solution,critical,type.1
-9a3fb27a-650f-465a-92e8-dc36f306013f,Problema referente a defeito no produto final,O problema ocorreu devido a falta de manutencao do Equipamento XPTO,Realizar a manutencao preventiva dos equipamentos,False,Category 02,
-fb685417-fd6e-43f1-8c7d-7c119abd2c48,Dark,Escreva aqui a descricao da nao conformidade,Escreva aqui a sua analise de causa raiz,Escreva aqui as acoes tomadas para solucionar o problema,1,
+id,type,description,rootcause,solution,critical
+32f8990f-01a2-4b61-8ed7-4da8302973e0,Category 01,Problema referente a defeito no produto final,O problema ocorreu devido a falta de manutencao do Equipamento XPTO,Realizar a manutencao preventiva dos equipamentos,1
+581adf24-e7fc-411b-8d14-ff95f474a132,Dark,Escreva aqui a descricao da nao conformidade,Escreva aqui a sua analise de causa raiz,Escreva aqui as acoes tomadas para solucionar o problema,1
+dd4df514-f515-415c-8536-276ff9e6125a,Dark,Escreva aqui a descricao da nao conformidade 2,2 Escreva aqui a sua analise de causa raiz,Escreva aqui as acoes tomadas para solucionar o problema,0
+ba251503-7a80-4bb1-a9e9-3b8f18408b6b,Light,Nova nao conformidade,Escreva aqui a sua analise de causa raiz,Escreva aqui as acoes tomadas para solucionar o problema,1
