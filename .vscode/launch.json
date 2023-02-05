@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Python: Non Conformity System",
             "type": "python",
             "request": "launch",
             "program": "C:/Users/Guilh/Workspace/Programming for non programmers/01_NON_CONFORMITIES_PROJECT/role model project/main.py",
