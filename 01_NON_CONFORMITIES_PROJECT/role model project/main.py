@@ -10,8 +10,9 @@ from tkinter import messagebox
 customtkinter.set_appearance_mode("System")
 # Themes: "blue" (standard), "green", "dark-blue"
 customtkinter.set_default_color_theme("blue")
+import uuid
 
-PATH = os.path.dirname(os.path.realpath(__file__))  # Current Work Directory
+PATH =  os.path.join(os.path.dirname(__file__), '../data/data.csv')
 
 
 class App(customtkinter.CTk):
@@ -86,7 +87,7 @@ class App(customtkinter.CTk):
 
     def load_png_img(self, path, img_width, img_height):
         """ Load PNG from path"""
-        return ImageTk.PhotoImage(Image.open(PATH + path).resize((img_width, img_height)))
+        return ImageTk.PhotoImage(Image.open(os.path.dirname(os.path.realpath(__file__)) + path).resize((img_width, img_height)))
 
     def save_result():
         identification = App.ctks_identity.get()
@@ -96,21 +97,22 @@ class App(customtkinter.CTk):
         critical = App.ctkcheck_critical.get()
 
         result_dict = {
-            'id': str(identification).replace('\n', ''),
+            'id': uuid.uuid4(),
+            'type': str(identification).replace('\n', ''),
             'description': str(description).replace('\n', ''),
             'rootcause': str(rootcause).replace('\n', ''),
             'solution': str(solution).replace('\n', ''),
             'critical': str(critical).replace('\n', '')
         }
         df_result = pandas.DataFrame()
-        if (os.stat("role model project/data/data.csv").st_size == 0):
+        if (os.stat(f'{PATH}').st_size == 0):
             df_result = pandas.DataFrame([result_dict])
         else:
-            df_current = pandas.read_csv("role model project/data/data.csv")
+            df_current = pandas.read_csv(f'{PATH}')
             df_result = pandas.concat(
                 [df_current, pandas.DataFrame([result_dict])], axis=0)
         
-        df_result.to_csv(r'role model project/data/data.csv', index=False)
+        df_result.to_csv(f'{PATH}', index=False)
         messagebox.showinfo('Sucesso!!','Nao conformidade salva com sucesso')
 
 

@@ -1,0 +1,3 @@
+id,type,description,rootcause,solution,critical,type.1
+9a3fb27a-650f-465a-92e8-dc36f306013f,Problema referente a defeito no produto final,O problema ocorreu devido a falta de manutencao do Equipamento XPTO,Realizar a manutencao preventiva dos equipamentos,False,Category 02,
+fb685417-fd6e-43f1-8c7d-7c119abd2c48,Dark,Escreva aqui a descricao da nao conformidade,Escreva aqui a sua analise de causa raiz,Escreva aqui as acoes tomadas para solucionar o problema,1,

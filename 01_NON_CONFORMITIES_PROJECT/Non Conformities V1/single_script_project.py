@@ -4,12 +4,14 @@ from tkinter import messagebox, scrolledtext
 import pandas
 from PIL import Image, ImageTk
 import os
+import uuid
 
 window = tk.Tk()
 window.geometry('1080x720')
 window.title("Sistema de abertura de Nao Conformidades")
 
 check_state = False
+savePath = os.path.join(os.path.dirname(__file__), '../data/data.csv')
 
 def save_information():
     identification = ttkcombo_category.get()
@@ -18,21 +20,22 @@ def save_information():
     solution = txt_solution.get("0.0", "end")
     critical = check_state
     result_dict = {
-        'id': str(identification).replace('\n', ''),
+        'id': uuid.uuid4(),
+        'type': str(identification).replace('\n', ''),
         'description': str(description).replace('\n', ''),
         'rootcause': str(rootcause).replace('\n', ''),
         'solution': str(solution).replace('\n', ''),
         'critical': str(critical).replace('\n', '')
     }
     df_result = pandas.DataFrame()
-    if (os.stat("role model project/data/data.csv").st_size == 0):
+    if (os.stat(f'{savePath}').st_size == 0):
         df_result = pandas.DataFrame([result_dict])
     else:
-        df_current = pandas.read_csv("role model project/data/data.csv")
+        df_current = pandas.read_csv(f'{savePath}')
         df_result = pandas.concat(
             [df_current, pandas.DataFrame([result_dict])], axis=0)
     
-    df_result.to_csv(r'role model project/data/data.csv', index=False)
+    df_result.to_csv(f'{savePath}', index=False)
     messagebox.showinfo('Sucesso!!','Nao conformidade salva com sucesso')
 
 tklabel_title = tk.Label(
